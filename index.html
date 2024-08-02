@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emir Doğan's GitHub Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Emir Doğan's Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Emir Doğan's GitHub Page!</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1>Emir Doğan</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>This is a brief introduction about me.</p>
+        <section class="hero">
+            <div class="container">
+                <h2>Welcome to My Portfolio</h2>
+                <p>This is a brief introduction about me and my work.</p>
+            </div>
         </section>
-        <section id="projects">
-            <h2>My Projects</h2>
-            <p>Here are some of my projects.</p>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>You can reach me at <a href="mailto:emirdogann@example.com">mirdogan002@gmail.com</a>.</p>
+        <section class="featured-projects">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project">
+                        <h3>Project 1</h3>
+                        <p>Description of Project 1.</p>
+                    </div>
+                    <div class="project">
+                        <h3>Project 2</h3>
+                        <p>Description of Project 2.</p>
+                    </div>
+                    <div class="project">
+                        <h3>Project 3</h3>
+                        <p>Description of Project 3.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Emir Doğan. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Emir Doğan. All rights reserved.</p>
+        </div>
     </footer>
-    <script src="scripts.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
-
