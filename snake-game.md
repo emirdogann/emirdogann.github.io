@@ -24,7 +24,7 @@ permalink: /snake-game/
 
     <!-- nasıl oynanır -->
     <div class="instructions">
-        Yılanı kontrol etmek için ok tuşlarını kullan. Yemekleri ye, büyü ve puan kazan!
+        tipik nokia yılan oyunu
     </div>
 </div>
 
