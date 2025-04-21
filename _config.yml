@@ -33,7 +33,7 @@ minima:
   #   should be rendered.
   nav_pages:
     - about.md
-    
+    - snake-game.md
     
 
   # Set to `true` to show excerpts on the homepage.

@@ -1,2 +1,19 @@
 .DS_Store
+.DS_Store?
 
+# Build and distribution
+dist/
+build/
+.jekyll-cache/
+_site/**
+_site/
+.sass-cache/
+*.log
+
+# Ruby/Jekyll specific
+.bundle/
+vendor/
+.jekyll-metadata
+.jekyll-cache/
+
+*.xml
