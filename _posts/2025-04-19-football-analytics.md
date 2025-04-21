@@ -41,8 +41,6 @@ position_matrix = (
 Then, I analyzed the average player market value per position per country. This reveals not just how many players exist, but how valuable they are.
 
 ```python
-Kopyala
-Düzenle
 value_matrix = (
     filtered_players
     .groupby(['country_of_citizenship', 'position'])['market_value_in_eur']
@@ -91,8 +89,6 @@ Turkey has unstable trends with Midfielders being the strongest.
 I also visualized the top 1000 most valuable players to understand global trends in football wealth.
 
 ```python
-Kopyala
-Düzenle
 top_1000 = filtered_players.sort_values('market_value_in_eur', ascending=False).head(1000)
 
 top1000_country_position_value = (

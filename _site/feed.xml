@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-21T22:24:36+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Emir’s Blog</title><subtitle>Personal blog of Emir Dogan
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-21T22:30:21+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Emir’s Blog</title><subtitle>Personal blog of Emir Dogan
 </subtitle><author><name>Emir Dogan</name></author><entry><title type="html">Football Analytics: Market Value &amp;amp; Transfers</title><link href="http://localhost:4000/football-analytics-market-value-transfers/" rel="alternate" type="text/html" title="Football Analytics: Market Value &amp;amp; Transfers" /><published>2025-04-19T00:00:00+03:00</published><updated>2025-04-19T00:00:00+03:00</updated><id>http://localhost:4000/football-analytics</id><content type="html" xml:base="http://localhost:4000/football-analytics-market-value-transfers/"><![CDATA[<div style="text-align: center;">
   <img src="../assets/images/ball.jpeg" alt="Ball" style="max-width: 70%; height: auto;" />
 </div>
@@ -28,9 +28,7 @@
 <h2 id="2️-average-market-value-by-country-and-position-">2️. Average Market Value by Country and Position (€)</h2>
 <p>Then, I analyzed the average player market value per position per country. This reveals not just how many players exist, but how valuable they are.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Kopyala</span>
-<span class="n">Düzenle</span>
-<span class="n">value_matrix</span> <span class="o">=</span> <span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">value_matrix</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">filtered_players</span>
     <span class="p">.</span><span class="nf">groupby</span><span class="p">([</span><span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">position</span><span class="sh">'</span><span class="p">])[</span><span class="sh">'</span><span class="s">market_value_in_eur</span><span class="sh">'</span><span class="p">]</span>
     <span class="p">.</span><span class="nf">mean</span><span class="p">()</span>
@@ -73,9 +71,7 @@
 <h2 id="4️-top-1000-players-by-market-value--country-mapping">4️. Top 1000 Players by Market Value – Country Mapping</h2>
 <p>I also visualized the top 1000 most valuable players to understand global trends in football wealth.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Kopyala</span>
-<span class="n">Düzenle</span>
-<span class="n">top_1000</span> <span class="o">=</span> <span class="n">filtered_players</span><span class="p">.</span><span class="nf">sort_values</span><span class="p">(</span><span class="sh">'</span><span class="s">market_value_in_eur</span><span class="sh">'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="nf">head</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">top_1000</span> <span class="o">=</span> <span class="n">filtered_players</span><span class="p">.</span><span class="nf">sort_values</span><span class="p">(</span><span class="sh">'</span><span class="s">market_value_in_eur</span><span class="sh">'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="nf">head</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="n">top1000_country_position_value</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">top_1000</span>
