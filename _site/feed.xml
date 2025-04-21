@@ -1,28 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-21T15:58:17+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Emir’s Blog</title><subtitle>Personal blog of Emir Dogan
-</subtitle><author><name>Emir Dogan</name></author><entry><title type="html">Football Analytics: Market Value &amp;amp; Transfers</title><link href="http://localhost:4000/football-analytics-market-value-transfers/" rel="alternate" type="text/html" title="Football Analytics: Market Value &amp;amp; Transfers" /><published>2025-04-19T00:00:00+03:00</published><updated>2025-04-19T00:00:00+03:00</updated><id>http://localhost:4000/test-post</id><content type="html" xml:base="http://localhost:4000/football-analytics-market-value-transfers/"><![CDATA[<p align="center">
-  <img src="/assets/images/football.jpeg" alt="Football Project Cover" width="700" />
-</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-21T22:24:36+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Emir’s Blog</title><subtitle>Personal blog of Emir Dogan
+</subtitle><author><name>Emir Dogan</name></author><entry><title type="html">Football Analytics: Market Value &amp;amp; Transfers</title><link href="http://localhost:4000/football-analytics-market-value-transfers/" rel="alternate" type="text/html" title="Football Analytics: Market Value &amp;amp; Transfers" /><published>2025-04-19T00:00:00+03:00</published><updated>2025-04-19T00:00:00+03:00</updated><id>http://localhost:4000/football-analytics</id><content type="html" xml:base="http://localhost:4000/football-analytics-market-value-transfers/"><![CDATA[<div style="text-align: center;">
+  <img src="../assets/images/ball.jpeg" alt="Ball" style="max-width: 70%; height: auto;" />
+</div>
 
-<p>Football Analytics Dashboard
-Player Values, Position Distributions &amp; League Stats
-This project provides visual insights into European football players’ market values, transfer records, and position-based statistics. Using Python and EDA techniques, meaningful patterns are presented through interactive charts and heatmaps.</p>
+<h1 id="soccer-analytics-country--position-analysis">Soccer Analytics: Country &amp; Position Analysis</h1>
 
-<p>Datasets Used:
-Player profiles (players.csv)</p>
+<p>Welcome to my data analysis project where I explored how different countries perform in various football positions based on player count and market value. Using Python and visualization libraries like <strong>Matplotlib</strong>, <strong>Seaborn</strong>, and <strong>Plotly</strong>, I created several charts to extract interesting insights from the dataset.</p>
 
-<p>Transfer history (transfers.csv)</p>
+<hr />
 
-<p>Match &amp; competition data (games.csv, competitions.csv)</p>
+<h2 id="1️-number-of-players-by-country-and-position">1️. Number of Players by Country and Position</h2>
 
-<p>Player valuations over time (player_valuations.csv)</p>
+<p>To begin, I calculated how many players each country has in different positions: Goalkeeper, Defender, Midfielder, and Attacker.</p>
 
-<p>Key Features:
-Distribution of top 1000 players by country and position</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">filtered_players</span> <span class="o">=</span> <span class="n">players</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">position</span><span class="sh">'</span><span class="p">])</span>
 
-<p>Transfer flows across leagues</p>
+<span class="n">position_matrix</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">filtered_players</span>
+    <span class="p">.</span><span class="nf">groupby</span><span class="p">([</span><span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">position</span><span class="sh">'</span><span class="p">])</span>
+    <span class="p">.</span><span class="nf">size</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">player_count</span><span class="sh">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="sh">'</span><span class="s">position</span><span class="sh">'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="sh">'</span><span class="s">player_count</span><span class="sh">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<h2 id="2️-average-market-value-by-country-and-position-">2️. Average Market Value by Country and Position (€)</h2>
+<p>Then, I analyzed the average player market value per position per country. This reveals not just how many players exist, but how valuable they are.</p>
 
-<p>Average market value by position</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Kopyala</span>
+<span class="n">Düzenle</span>
+<span class="n">value_matrix</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">filtered_players</span>
+    <span class="p">.</span><span class="nf">groupby</span><span class="p">([</span><span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">position</span><span class="sh">'</span><span class="p">])[</span><span class="sh">'</span><span class="s">market_value_in_eur</span><span class="sh">'</span><span class="p">]</span>
+    <span class="p">.</span><span class="nf">mean</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">reset_index</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="sh">'</span><span class="s">position</span><span class="sh">'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="sh">'</span><span class="s">market_value_in_eur</span><span class="sh">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nf">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<div style="text-align: center;"> <img src="../assets/images/value_heatmap.png" alt="Market Value Heatmap" style="max-width: 90%;" /> </div>
 
-<p>Heatmaps and interactive visualizations</p>
+<p>Insights:</p>
 
-<p>🔗 <a href="https://github.com/emirdogann/football-analytics">GitHub Repository</a></p>]]></content><author><name>Emir Dogan</name></author><summary type="html"><![CDATA[]]></summary></entry></feed>
+<p>England leads in Attack, Defence, and Midfield.</p>
+
+<p>Argentina has top Goalkeepers.</p>
+
+<p>Turkey is only above average in Midfield.</p>
+
+<h2 id="3️-player-production-trends-over-time">3️. Player Production Trends Over Time</h2>
+<p>Using birth year data, I explored how player production by position evolved for countries like Brazil, England, Turkey, and France.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">players_cleaned</span><span class="p">[</span><span class="sh">'</span><span class="s">birth_year</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">to_datetime</span><span class="p">(</span><span class="n">players_cleaned</span><span class="p">[</span><span class="sh">'</span><span class="s">date_of_birth</span><span class="sh">'</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="sh">'</span><span class="s">coerce</span><span class="sh">'</span><span class="p">).</span><span class="n">dt</span><span class="p">.</span><span class="n">year</span>
+
+<span class="n">trend_by_country_position</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">players_cleaned</span><span class="p">[</span><span class="n">players_cleaned</span><span class="p">[</span><span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">].</span><span class="nf">isin</span><span class="p">(</span><span class="n">selected_countries</span><span class="p">)]</span>
+    <span class="p">.</span><span class="nf">groupby</span><span class="p">([</span><span class="sh">'</span><span class="s">birth_year</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">position</span><span class="sh">'</span><span class="p">])</span>
+    <span class="p">.</span><span class="nf">size</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">player_count</span><span class="sh">'</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<div style="text-align: center;"> <img src="../assets/images/player_trends.png" alt="Player Production Trends" style="max-width: 100%;" /> </div>
+<p>Notable Observations:</p>
+
+<p>Brazil consistently produces many attackers.</p>
+
+<p>Germany excels in Defenders and Goalkeepers after 1990.</p>
+
+<p>Turkey has unstable trends with Midfielders being the strongest.</p>
+
+<h2 id="4️-top-1000-players-by-market-value--country-mapping">4️. Top 1000 Players by Market Value – Country Mapping</h2>
+<p>I also visualized the top 1000 most valuable players to understand global trends in football wealth.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Kopyala</span>
+<span class="n">Düzenle</span>
+<span class="n">top_1000</span> <span class="o">=</span> <span class="n">filtered_players</span><span class="p">.</span><span class="nf">sort_values</span><span class="p">(</span><span class="sh">'</span><span class="s">market_value_in_eur</span><span class="sh">'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">).</span><span class="nf">head</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">top1000_country_position_value</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">top_1000</span>
+    <span class="p">.</span><span class="nf">groupby</span><span class="p">([</span><span class="sh">'</span><span class="s">country_of_citizenship</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">position</span><span class="sh">'</span><span class="p">])[</span><span class="sh">'</span><span class="s">market_value_in_eur</span><span class="sh">'</span><span class="p">]</span>
+    <span class="p">.</span><span class="nf">mean</span><span class="p">()</span>
+    <span class="p">.</span><span class="nf">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div style="text-align: center;"> <img src="../assets/images/top1000_attack_map.png" alt="Top Attackers Map" style="max-width: 100%;" /> </div>
+<p>Highlights:</p>
+
+<p>Brazil dominates in Attack.</p>
+
+<p>France and England are top for Defence and Midfield.</p>
+
+<p>Senegal and some African nations show hidden talent.</p>
+
+<p><a href="https://github.com/emirdogann/football-analytics">GitHub Repository</a></p>]]></content><author><name>Emir Dogan</name></author><summary type="html"><![CDATA[]]></summary></entry></feed>
